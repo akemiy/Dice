@@ -24,7 +24,7 @@ void draw(){
 }
 void mousePressed(){
   redraw();
-  sum=0;
+  //sum=0;
 }
 class Die{
   int x,y,size,roll,dotSize;
