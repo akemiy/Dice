@@ -5,6 +5,7 @@ void setup(){
 }
 void draw(){
   background(130);
+  sum=0;
   for (int i=0;i<8;i++){
     for (int j=0;j<8;j++){
       Die die=new Die(i*60+10,j*60+10,55,10);
@@ -24,7 +25,6 @@ void draw(){
 }
 void mousePressed(){
   redraw();
-  //sum=0;
 }
 class Die{
   int x,y,size,roll,dotSize;
