@@ -1,25 +1,26 @@
 int sum, cumulative;
 void setup(){
-  size(500,500);
+  size(500,510);
   noLoop();
 }
 void draw(){
   background(130);
-  for (int y=0;y<5;y++){
-    for (int x=0;x<5;x++){
-      Die die=new Die(x*90+30,y*90+20,80,12);
+  for (int i=0;i<8;i++){
+    for (int j=0;j<8;j++){
+      Die die=new Die(i*60+10,j*60+10,55,10);
+      die.roll();
       die.show();
       sum+=die.roll;
       cumulative+=die.roll;
     }
   }
-  fill(255,255,255,sum*4-200); 
-  textSize(150);
+  fill(255,255,255,sum*2-300); 
+  textSize(120);
   textAlign(CENTER);
   text(sum,250,290);
   fill(0);
-  textSize(16);
-  text("Cumulative: "+cumulative,250,485);
+  textSize(14);
+  text("Cumulative: "+cumulative,250,505);
 }
 void mousePressed(){
   redraw();
@@ -32,39 +33,48 @@ class Die{
     this.y=y;
     this.size=size;
     this.dotSize=dotSize;
-    this.roll=(int)(Math.random()*6+1);
+  }
+  void roll(){
+    roll=(int)(Math.random()*6+1);
   }
   void show(){
     fill(0);
-    rect(x,y,size,size,16);
+    rect(x,y,size,size,12);
     fill((int)(Math.random()*255),(int)(Math.random()*255),0);
-    if (roll==1){
-      ellipse(x+size/2,y+size/2,dotSize,dotSize);
-    } else if (roll==2){
-      ellipse(x+size/4,y+size/2,dotSize,dotSize);
-      ellipse(x+size*3/4,y+size/2,dotSize,dotSize);
-    } else if (roll==3){
-      ellipse(x+size/2,y+size/4,dotSize,dotSize);
-      ellipse(x+size/4,y+size*3/4,dotSize,dotSize);
-      ellipse(x+size*3/4,y+size*3/4,dotSize,dotSize);
-    } else if (roll==4){
-      ellipse(x+size/4,y+size/4,dotSize,dotSize);
-      ellipse(x+size*3/4,y+size/4,dotSize,dotSize);
-      ellipse(x+size/4,y+size*3/4,dotSize,dotSize);
-      ellipse(x+size*3/4,y+size*3/4,dotSize,dotSize);
-    } else if (roll==5){
-      ellipse(x+size/4,y+size/4,dotSize,dotSize);
-      ellipse(x+size*3/4,y+size/4,dotSize,dotSize);
-      ellipse(x+size/2,y+size/2,dotSize,dotSize);
-      ellipse(x+size/4,y+size*3/4,dotSize,dotSize);
-      ellipse(x+size*3/4,y+size*3/4,dotSize,dotSize);
-    } else {
-      ellipse(x+size/4,y+size/4,dotSize,dotSize);
-      ellipse(x+size/4,y+size/2,dotSize,dotSize);
-      ellipse(x+size/4,y+size*3/4,dotSize,dotSize);
-      ellipse(x+size*3/4,y+size/4,dotSize,dotSize);
-      ellipse(x+size*3/4,y+size/2,dotSize,dotSize); 
-      ellipse(x+size*3/4,y+size*3/4,dotSize,dotSize); 
+    switch (roll){
+      case 1:
+        ellipse(x+size/2,y+size/2,dotSize,dotSize);
+        break;
+      case 2:
+        ellipse(x+size/4,y+size/2,dotSize,dotSize);
+        ellipse(x+size*3/4,y+size/2,dotSize,dotSize);
+        break;
+      case 3:
+        ellipse(x+size/2,y+size/4,dotSize,dotSize);
+        ellipse(x+size/4,y+size*3/4,dotSize,dotSize);
+        ellipse(x+size*3/4,y+size*3/4,dotSize,dotSize);
+        break;
+      case 4:
+        ellipse(x+size/4,y+size/4,dotSize,dotSize);
+        ellipse(x+size*3/4,y+size/4,dotSize,dotSize);
+        ellipse(x+size/4,y+size*3/4,dotSize,dotSize);
+        ellipse(x+size*3/4,y+size*3/4,dotSize,dotSize);
+        break;
+      case 5:
+        ellipse(x+size/4,y+size/4,dotSize,dotSize);
+        ellipse(x+size*3/4,y+size/4,dotSize,dotSize);
+        ellipse(x+size/2,y+size/2,dotSize,dotSize);
+        ellipse(x+size/4,y+size*3/4,dotSize,dotSize);
+        ellipse(x+size*3/4,y+size*3/4,dotSize,dotSize);
+        break;
+      case 6:
+        ellipse(x+size/4,y+size/4,dotSize,dotSize);
+        ellipse(x+size/4,y+size/2,dotSize,dotSize);
+        ellipse(x+size/4,y+size*3/4,dotSize,dotSize);
+        ellipse(x+size*3/4,y+size/4,dotSize,dotSize);
+        ellipse(x+size*3/4,y+size/2,dotSize,dotSize); 
+        ellipse(x+size*3/4,y+size*3/4,dotSize,dotSize); 
+        break;
     }
   }
 }
